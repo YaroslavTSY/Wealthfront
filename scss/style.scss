@@ -1,9 +1,19 @@
 @import "fontsPreload";
-
 @import "fonts";
+@import "iconsfont";
 @import "reset";
 @import "px2em";
 @import "adaptiveValue";
+
+//* Variables
+$mainColor: #ffffff;
+$lightColor: #4840bb;
+$accentColor: #230b59;
+//*
+
+body {
+	font-family: "Roboto", sans-serif;
+}
 
 .img-fluid {
 	width: 100%;
@@ -11,6 +21,7 @@
 }
 
 .wrapper {
+	color: $accentColor;
 	overflow: hidden;
 	min-height: 100%;
 	display: flex;
@@ -21,11 +32,99 @@ main {
 	flex: 1 1 auto;
 }
 
+a:default {
+	color: $accentColor;
+}
+
 [class*="__container"] {
-	max-width: calc(none + 30px); // Enter the value
+	max-width: ($maxWidthContainer + px); // Enter the value
 	margin: 0 auto;
 	padding: 0px 15px;
 }
 
+//* text
+h2 {
+	font-size: 56px;
+}
+h3 {
+	font-size: 50px;
+}
+h4 {
+	font-size: 34px;
+}
+h5 {
+	font-size: 15px;
+}
+h6 {
+	font-size: 12px;
+}
+p {
+	font-size: 16px;
+}
+//*
+
 .main__index {
+}
+
+.btn {
+	font-weight: 700;
+}
+.btn__get {
+	padding: 11px 18px;
+	color: $mainColor;
+	background-color: $lightColor;
+	border-radius: 6px;
+}
+
+.header {
+	color: $lightColor;
+	background-color: rgba($color: #ffffff, $alpha: 0.95);
+	position: fixed;
+	width: 100%;
+	&__container {
+		min-height: 96px;
+		display: flex;
+		align-items: center;
+		padding-top: 30px;
+		padding-bottom: 30px;
+		justify-content: space-between;
+	}
+
+	&__logo {
+		color: $accentColor;
+		font-size: 25px;
+	}
+
+	&__nav {
+	}
+
+	&__btns {
+		display: flex;
+		gap: 12px;
+	}
+}
+.logo {
+}
+.nav {
+	&__list {
+		display: flex;
+		gap: 48px;
+		li {
+			font-size: 15px;
+			line-height: 1.8em;
+		}
+	}
+}
+.header-btn {
+	padding: 11px 18px;
+	&__login {
+		border: 1px solid $lightColor;
+		border-radius: 6px;
+		a {
+			color: $lightColor;
+		}
+	}
+
+	&__get {
+	}
 }

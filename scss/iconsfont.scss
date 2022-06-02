@@ -1,0 +1,80 @@
+@import "iconsfont_variables";
+
+@font-face {
+	font-family: "#{$icomoon-font-family}";
+	src: url("#{$icomoon-font-path}/#{$icomoon-font-family}.eot?j9k2gh");
+	src: url("#{$icomoon-font-path}/#{$icomoon-font-family}.eot?j9k2gh#iefix") format("embedded-opentype"),
+		url("#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?j9k2gh") format("truetype"),
+		url("#{$icomoon-font-path}/#{$icomoon-font-family}.woff?j9k2gh") format("woff"),
+		url("#{$icomoon-font-path}/#{$icomoon-font-family}.svg?j9k2gh##{$icomoon-font-family}") format("svg");
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+[class^="_icon-"]::before,
+[class*=" _icon-"]::before {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: "#{$icomoon-font-family}" !important;
+	speak: never;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+._icon-logo {
+	&:before {
+		content: $_icon-logo;
+	}
+}
+._icon-logoItem {
+	&:before {
+		content: $_icon-logoItem;
+	}
+}
+._icon-star {
+	&:before {
+		content: $_icon-star;
+	}
+}
+._icon-bloomberg {
+	&:before {
+		content: $_icon-bloomberg;
+	}
+}
+._icon-cnbc {
+	&:before {
+		content: $_icon-cnbc;
+	}
+}
+._icon-investopedia {
+	&:before {
+		content: $_icon-investopedia;
+	}
+}
+._icon-nerdwallet {
+	&:before {
+		content: $_icon-nerdwallet;
+	}
+}
+._icon-reuters {
+	&:before {
+		content: $_icon-reuters;
+	}
+}
+._icon-times {
+	&:before {
+		content: $_icon-times;
+	}
+}
+._icon-wsj {
+	&:before {
+		content: $_icon-wsj;
+	}
+}

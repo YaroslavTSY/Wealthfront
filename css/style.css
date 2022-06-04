@@ -192,6 +192,9 @@ body._lock {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(247, 233, 226, 0)), color-stop(25%, rgb(247, 231, 223)), color-stop(50%, rgb(247, 235, 229)), color-stop(75%, rgb(220, 223, 240)), to(rgb(214, 219, 240)));
+  background: -o-linear-gradient(top, rgba(247, 233, 226, 0) 0%, rgb(247, 231, 223) 25%, rgb(247, 235, 229) 50%, rgb(220, 223, 240) 75%, rgb(214, 219, 240) 100%);
+  background: linear-gradient(180deg, rgba(247, 233, 226, 0) 0%, rgb(247, 231, 223) 25%, rgb(247, 235, 229) 50%, rgb(220, 223, 240) 75%, rgb(214, 219, 240) 100%);
 }
 
 main {
@@ -286,6 +289,7 @@ p {
   color: #4840bb;
   background-color: rgba(255, 255, 255, 0.95);
   position: fixed;
+  z-index: 1;
   width: 100%;
 }
 
@@ -388,7 +392,7 @@ p {
       -ms-flex-align: center;
           align-items: center;
   gap: 48px;
-  margin-bottom: 32px;
+  margin-bottom: 50px;
 }
 
 .preview__img {
@@ -437,15 +441,23 @@ p {
 }
 
 .info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: -ms-grid;
+  display: grid;
+  gap: 20px;
+      grid-template-areas: "nerdwallet investopedia info__subwrapper info__subwrapper info__subwrapper info__subwrapper";
+}
+
+.info__subwrapper {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  -ms-grid-column-span: 7;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 20px 1fr 20px 1fr 20px 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0px 20px;
+      grid-template-areas: ". . . .";
+  grid-area: info__subwrapper;
 }
 
 .info-item__title {
@@ -460,6 +472,18 @@ p {
 
 .info-item__text {
   font-size: 14px;
+}
+
+.info-item.nerdwallet {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: nerdwallet;
+}
+
+.info-item.investopedia {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: investopedia;
 }
 
 .investing {
@@ -508,7 +532,12 @@ p {
       -ms-flex: 1 1 66.666%;
           flex: 1 1 66.666%;
   position: relative;
-  z-index: -1;
+  z-index: 0;
+}
+
+.investing__img img {
+  border-radius: 25px;
+  overflow: hidden;
 }
 
 .investing__img:before {
@@ -523,6 +552,48 @@ p {
   position: absolute;
   top: 33.2%;
   left: 32%;
+}
+
+@media (max-width: 61.9375em) {
+  .info {
+    justify-items: center;
+    -ms-grid-columns: 1fr 25px 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    -ms-grid-rows: auto 25px auto 25px auto;
+    grid-template-rows: repeat(3, auto);
+    gap: 25px;
+        grid-template-areas: "nerdwallet nerdwallet" "investopedia investopedia" "info__subwrapper info__subwrapper";
+  }
+
+  .info__subwrapper {
+    margin-top: 10px;
+    -ms-grid-columns: auto 25px auto;
+    grid-template-columns: repeat(2, auto);
+    -ms-grid-rows: auto 25px auto;
+    grid-template-rows: repeat(2, auto);
+    width: 100%;
+    gap: 25px;
+        grid-template-areas: ". ." ". .";
+  }
+
+  .info-item {
+    text-align: center;
+  }
+  .info__subwrapper {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+  }
+  .info-item.nerdwallet {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+  }
+  .info-item.investopedia {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+  }
 }
 
 @media (max-width: 47.9375em) {
@@ -706,7 +777,7 @@ p {
     top: 0;
     left: 0;
     height: calc(70px + 26 * ((100vw - 320px) / 1120));
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: #ffffff;
     z-index: 2;
   }
 

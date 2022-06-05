@@ -217,7 +217,7 @@ a {
 }
 
 h2 {
-  font-size: 56px;
+  font-size: calc(46px + 10 * ((100vw - 320px) / 1120));
 }
 
 h3 {
@@ -276,6 +276,10 @@ p {
 
 .btn__get:hover {
   background-color: rgba(35, 11, 89, 0.8);
+}
+
+.btn__more {
+  min-width: auto;
 }
 
 .btn__more:hover {
@@ -349,6 +353,7 @@ p {
 }
 
 .menu__list li {
+  text-transform: capitalize;
   font-size: 18px;
   line-height: 1.8em;
 }
@@ -407,6 +412,7 @@ p {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 41%;
           flex: 1 1 41%;
+  padding: 0px 15px;
 }
 
 .offer {
@@ -502,7 +508,6 @@ p {
 }
 
 .investing__title {
-  font-size: 56px;
   line-height: 0.96em;
   letter-spacing: 0.0535714286em;
   margin-bottom: 15px;
@@ -516,13 +521,9 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: calc(5px + 27 * ((100vw - 320px) / 1120));
-}
-
-.investing__btns > a {
-  min-width: -webkit-max-content;
-  min-width: -moz-max-content;
-  min-width: max-content;
 }
 
 .investing__img {
@@ -554,6 +555,10 @@ p {
   --wf-fade-start: 5%;
 }
 
+body._touch .btn__more {
+  text-decoration: underline;
+}
+
 @media (min-width: 62em) {
   .investing__content {
     max-width: 33.333%;
@@ -565,6 +570,16 @@ p {
 }
 
 @media (max-width: 61.9375em) {
+  .header__container {
+    gap: 5%;
+  }
+
+  .header__logo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+  }
+
   .info {
     justify-items: center;
     -ms-grid-columns: 1fr 25px 1fr;
@@ -599,16 +614,19 @@ p {
     top: 180px;
     left: "100%";
   }
+
   .info__subwrapper {
     -ms-grid-row: 5;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
   }
+
   .info-item.nerdwallet {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
   }
+
   .info-item.investopedia {
     -ms-grid-row: 3;
     -ms-grid-column: 1;
@@ -634,7 +652,7 @@ p {
   }
 }
 
-@media (max-width: 47.9375em) {
+@media (max-width: 55.625em) {
   .menu__icon {
     z-index: 5;
     display: block;
@@ -715,7 +733,7 @@ p {
     position: fixed;
     right: -100%;
     top: 0;
-    width: calc(240px + 20 * ((100vw - 320px) / 1120));
+    width: calc(240px + 160 * ((100vw - 320px) / 1120));
     height: 100%;
     background-color: rgba(35, 11, 89, 0.85);
     z-index: 1;
@@ -765,7 +783,9 @@ p {
     color: #ffffff;
     border: 2px solid #4840bb;
   }
+}
 
+@media (max-width: 47.9375em) {
   .header {
     background-color: rgba(255, 255, 255, 0.85);
   }

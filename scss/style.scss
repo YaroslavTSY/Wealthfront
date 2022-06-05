@@ -55,7 +55,8 @@ a {
 [class*="__container-xl"] {
 	max-width: 1280px; // Enter the value
 	margin: 0 auto;
-	padding: 0px 65px;
+	@include adaptiv-value("padding-left", 65, 30, 0);
+	@include adaptiv-value("padding-right", 65, 30, 0);
 }
 
 //* text
@@ -274,13 +275,12 @@ p {
 	padding: 67.5px 0px 45px 0px;
 	&__container-xl {
 		display: flex;
-		gap: 64px;
+		justify-content: center;
+		@include adaptiv-value("gap", 64, 30, 0);
 	}
-
 	&__content {
-		flex: 1 0 33.333%;
+		max-width: 45%;
 	}
-
 	&__title {
 		font-size: 56px;
 		line-height: 0.96em;
@@ -294,38 +294,50 @@ p {
 
 	&__btns {
 		display: flex;
-		gap: 32px;
+		@include adaptiv-value("gap", 32, 5, 0);
 		> a {
 			min-width: max-content;
 		}
 	}
 
 	&__img {
-		flex: 1 1 66.666%;
 		position: relative;
 		z-index: 0;
-		img {
-			border-radius: 25px;
-			overflow: hidden;
+		&:before,
+		&:after {
+			z-index: 1;
 		}
 		&:before {
 			content: url(@img/notification1.png);
 			position: absolute;
-			top: 5%;
-			left: 43%;
+			top: 32px;
+			left: 50%;
 		}
 		&:after {
 			content: url(@img/notification2.png);
 			position: absolute;
-			top: 33.2%;
-			left: 32%;
+			top: 175px;
+			left: 39%;
 		}
 	}
 }
 
 //* === investing section
-
+:root {
+	--wf-fade-stop: 0%;
+	--wf-fade-start: 5%;
+}
 //* === media query's
+@media (min-width: em(992px)) {
+	.investing {
+		&__content {
+			max-width: 33.333%;
+		}
+		&__img {
+			width: 598px;
+		}
+	}
+}
 @media (max-width: em(991px)) {
 	.info {
 		justify-items: center;
@@ -349,6 +361,18 @@ p {
 	}
 	.info-item {
 		text-align: center;
+	}
+	.investing {
+		&__img {
+			&::before {
+				@include adaptiv-value("left", 100, 15, 4);
+				@include adaptiv-value("top", 100, 300, 1);
+			}
+			&::after {
+				@include adaptiv-value("top", 180, 450, 1);
+				@include adaptiv-value("left", 100, -30, 4);
+			}
+		}
 	}
 }
 @media (max-width: em(767px)) {
@@ -478,6 +502,36 @@ p {
 		}
 		&__info {
 			padding: 0px 15px;
+		}
+	}
+	.investing {
+		&__container-xl {
+			flex-direction: column-reverse;
+		}
+		&__content {
+			@include adaptiv-value("max-width", 33.333, 100, 4);
+		}
+		&__img {
+			img {
+				@include adaptiv-value("width", 100, 105, 4);
+				height: 370px;
+				@include adaptiv-value("height", 370, 400, 0);
+				object-fit: none;
+				object-position: top left;
+				-webkit-mask-image: linear-gradient(0deg, #0000 var(--wf-fade-stop, 60%), #fff var(--wf-fade-start, 75%));
+			}
+			&::before,
+			&::after {
+				right: auto;
+			}
+			&::before {
+				@include adaptiv-value("left", 350, 7, 4);
+				@include adaptiv-value("top", -50, 50, 4);
+			}
+			&::after {
+				@include adaptiv-value("left", 230, 7, 4);
+				@include adaptiv-value("top", 10, 77, 4);
+			}
 		}
 	}
 }

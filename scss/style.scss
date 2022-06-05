@@ -58,7 +58,7 @@ a {
 
 //* text
 h2 {
-	font-size: 56px;
+	@include adaptiv-value("font-size", 56, 46, 0);
 }
 h3 {
 	font-size: 50px;
@@ -104,6 +104,7 @@ p {
 }
 .btn__more {
 	@extend .btn;
+	min-width: auto;
 	&:hover {
 		background-color: rgba($color: $lightColor, $alpha: 0.2);
 	}
@@ -153,6 +154,7 @@ p {
 		display: flex;
 		@include adaptiv-value("gap", 48, 25, 0);
 		li {
+			text-transform: capitalize;
 			font-size: 18px;
 			line-height: 1.8em;
 			&:hover {
@@ -209,6 +211,7 @@ p {
 
 	&__offer {
 		flex: 1 1 41%;
+		padding: 0px 15px;
 	}
 }
 .offer {
@@ -279,7 +282,6 @@ p {
 		max-width: 45%;
 	}
 	&__title {
-		font-size: 56px;
 		line-height: 0.96em;
 		letter-spacing: em(3px, "em", 56px);
 		margin-bottom: 15px;
@@ -291,12 +293,9 @@ p {
 
 	&__btns {
 		display: flex;
+		flex-wrap: wrap;
 		@include adaptiv-value("gap", 32, 5, 0);
-		> a {
-			min-width: max-content;
-		}
 	}
-
 	&__img {
 		position: relative;
 		z-index: 0;
@@ -324,6 +323,13 @@ p {
 	--wf-fade-stop: 0%;
 	--wf-fade-start: 5%;
 }
+
+//* === touch/pc ===
+body._touch {
+	.btn__more {
+		text-decoration: underline;
+	}
+}
 //* === media query's
 @media (min-width: em(992px)) {
 	.investing {
@@ -335,44 +341,7 @@ p {
 		}
 	}
 }
-@media (max-width: em(991px)) {
-	.info {
-		justify-items: center;
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(3, auto);
-		gap: 25px;
-		grid-template-areas:
-			"nerdwallet nerdwallet"
-			"investopedia investopedia"
-			"info__subwrapper info__subwrapper";
-		&__subwrapper {
-			margin-top: 10px;
-			grid-template-columns: repeat(2, auto);
-			grid-template-rows: repeat(2, auto);
-			width: 100%;
-			gap: 25px;
-			grid-template-areas:
-				". ."
-				". .";
-		}
-	}
-	.info-item {
-		text-align: center;
-	}
-	.investing {
-		&__img {
-			&::before {
-				@include adaptiv-value("left", 100, 15, 4);
-				@include adaptiv-value("top", 100, 300, 1);
-			}
-			&::after {
-				@include adaptiv-value("top", 180, 450, 1);
-				@include adaptiv-value("left", 100, -30, 4);
-			}
-		}
-	}
-}
-@media (max-width: em(767px)) {
+@media (max-width: em(890px)) {
 	//* --------- Burger Active ------------ *//
 	//* Styling a Burger -------
 	.menu__icon {
@@ -439,7 +408,7 @@ p {
 		position: fixed;
 		right: -100%;
 		top: 0;
-		@include adaptiv-value("width", 260, 240, 0);
+		@include adaptiv-value("width", 400, 240, 0);
 		height: 100%;
 		background-color: rgba($color: $accentColor, $alpha: 0.85);
 		z-index: 1;
@@ -478,7 +447,53 @@ p {
 		border: 2px solid $lightColor;
 	}
 	//* Burger Menu END --------
-
+}
+@media (max-width: em(991px)) {
+	.header {
+		&__container {
+			gap: 5%;
+		}
+		&__logo {
+			flex: 0 1 auto;
+		}
+	}
+	.info {
+		justify-items: center;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(3, auto);
+		gap: 25px;
+		grid-template-areas:
+			"nerdwallet nerdwallet"
+			"investopedia investopedia"
+			"info__subwrapper info__subwrapper";
+		&__subwrapper {
+			margin-top: 10px;
+			grid-template-columns: repeat(2, auto);
+			grid-template-rows: repeat(2, auto);
+			width: 100%;
+			gap: 25px;
+			grid-template-areas:
+				". ."
+				". .";
+		}
+	}
+	.info-item {
+		text-align: center;
+	}
+	.investing {
+		&__img {
+			&::before {
+				@include adaptiv-value("left", 100, 15, 4);
+				@include adaptiv-value("top", 100, 300, 1);
+			}
+			&::after {
+				@include adaptiv-value("top", 180, 450, 1);
+				@include adaptiv-value("left", 100, -30, 4);
+			}
+		}
+	}
+}
+@media (max-width: em(767px)) {
 	//* Hero-section
 	.header {
 		background-color: rgba($color: $mainColor, $alpha: 0.85);

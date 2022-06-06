@@ -50,10 +50,9 @@ a {
 	padding: 0px 15px;
 }
 [class*="__container-xl"] {
-	max-width: 1280px; // Enter the value
+	max-width: 1344px; // Enter the value
 	margin: 0 auto;
-	@include adaptiv-value("padding-left", 65, 30, 0);
-	@include adaptiv-value("padding-right", 65, 30, 0);
+	padding: 0px 15px;
 }
 
 //* text
@@ -116,7 +115,7 @@ p {
 	position: fixed;
 	z-index: 1;
 	width: 100%;
-	&__container {
+	&__container-xl {
 		@include adaptiv-value("min-height", 96, 70, 0);
 		display: flex;
 		align-items: center;
@@ -187,7 +186,7 @@ p {
 //* first-screen---
 .hero {
 	padding-bottom: 67.5px;
-	&__container {
+	&__container-xl {
 	}
 
 	&__preview {
@@ -276,6 +275,8 @@ p {
 	&__container-xl {
 		display: flex;
 		justify-content: center;
+		@include adaptiv-value("padding-left", 65, 30, 0);
+		@include adaptiv-value("padding-right", 65, 30, 0);
 		@include adaptiv-value("gap", 64, 30, 0);
 	}
 	&__content {
@@ -306,14 +307,14 @@ p {
 		&:before {
 			content: url(@img/notification1.png);
 			position: absolute;
-			top: 32px;
+			top: 6%;
 			left: 50%;
 		}
 		&:after {
 			content: url(@img/notification2.png);
 			position: absolute;
-			top: 175px;
-			left: 39%;
+			top: 33%;
+			left: 38.2%;
 		}
 	}
 }
@@ -450,7 +451,7 @@ body._touch {
 }
 @media (max-width: em(991px)) {
 	.header {
-		&__container {
+		&__container-xl {
 			gap: 5%;
 		}
 		&__logo {
@@ -483,12 +484,12 @@ body._touch {
 	.investing {
 		&__img {
 			&::before {
-				@include adaptiv-value("left", 100, 15, 4);
-				@include adaptiv-value("top", 100, 300, 1);
+				top: 48%;
+				left: 18%;
 			}
 			&::after {
-				@include adaptiv-value("top", 180, 450, 1);
-				@include adaptiv-value("left", 100, -30, 4);
+				top: 72%;
+				left: -18%;
 			}
 		}
 	}
@@ -506,7 +507,7 @@ body._touch {
 		}
 	}
 	.hero {
-		&__container {
+		&__container-xl {
 			padding: 0;
 		}
 		&__preview {

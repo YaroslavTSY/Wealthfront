@@ -36,6 +36,9 @@ body {
 	);
 }
 
+section {
+	padding: 45px 0;
+}
 main {
 	flex: 1 1 auto;
 }
@@ -272,7 +275,7 @@ p {
 //* investing section ===
 .investing {
 	padding: 67.5px 0px 45px 0px;
-	&__container-xl {
+	&__container {
 		display: flex;
 		justify-content: center;
 		@include adaptiv-value("padding-left", 65, 30, 0);
@@ -281,15 +284,16 @@ p {
 	}
 	&__content {
 		max-width: 45%;
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
 	}
 	&__title {
 		line-height: 0.96em;
 		letter-spacing: em(3px, "em", 56px);
-		margin-bottom: 15px;
 	}
 
 	&__text {
-		margin-bottom: 30px;
 	}
 
 	&__btns {
@@ -323,6 +327,45 @@ p {
 :root {
 	--wf-fade-stop: 0%;
 	--wf-fade-start: 5%;
+}
+//*
+//* Cash section
+.cash {
+	&__container {
+		@extend .investing__container;
+		align-items: center;
+		gap: 4%;
+	}
+	&__img {
+		display: flex;
+		justify-content: flex-end;
+		flex: 11;
+		position: relative;
+		&::before {
+			content: url(@img/icons/icons.svg#card);
+			position: absolute;
+			@include adaptiv-value("width", 354, 177, 1);
+			@include adaptiv-value("height", 471, 235.5, 1);
+			left: 0.5%;
+			@include adaptiv-value("top", 136, 400, 1);
+			transition: all 0.3s ease 0s;
+			transform: rotate(-10deg) scale(1);
+			// background: url(@img/card.png);
+		}
+	}
+	&__content {
+		@extend .investing__content;
+		flex: 6;
+	}
+	&__title {
+		@extend .investing__title;
+	}
+	&__text {
+		@extend .investing__text;
+	}
+	&__btns {
+		@extend .investing__btns;
+	}
 }
 
 //* === touch/pc ===
@@ -518,7 +561,7 @@ body._touch {
 		}
 	}
 	.investing {
-		&__container-xl {
+		&__container {
 			flex-direction: column-reverse;
 		}
 		&__content {

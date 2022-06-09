@@ -1,5 +1,5 @@
 import * as functions from "./modules/functions.js";
-
+import Swiper from 'swiper';
 functions.isWebp();
 functions.isMobile;
 
@@ -30,14 +30,26 @@ if (iconMenu) {
 		menu.classList.toggle('_active');
 	});
 }
-// window.onload = function () {
-// 	//Yandex map's imported from map.js
-// 	map
-// }
 
-
-
-
-
-
-
+//! Swiper Slider
+const cards = new Swiper('.testimonial__slider', {
+	enabled: true,
+	slidesPerView: 1,
+	spaceBetween: 16,
+	autoHeight: true,
+	pagination: {
+		el: '.testimonial-pagination',
+		type: 'bullets',
+	},
+	scrollbar: {
+		el: '.testimonial-scrollbar',
+		draggable: true,
+		dragClass: 'testimonial-scrollbar-drag',
+	},
+	breakpoints: {
+		992: {
+			scrollbar: false,
+			enabled: false,
+		}
+	}
+})

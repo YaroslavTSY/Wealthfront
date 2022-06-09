@@ -395,6 +395,80 @@ p {
 		}
 	}
 }
+//* testimonail section
+.testimonial {
+	padding: 0 0px 45px 0px;
+	height: fit-content;
+	&__wrapper {
+		@include adaptiv-value("height", 563, 300, 1);
+		background: $accentColor;
+		position: relative;
+		margin-bottom: 23%;
+	}
+	&__slider {
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%, 0px);
+		overflow: visible;
+		bottom: -23%;
+		@include adaptiv-value("max-width", 1310, 320, 0);
+		margin: 0 auto;
+		padding: 0px 15px;
+	}
+	&-pagination {
+	}
+	&-button {
+		&-next {
+			display: none;
+		}
+		&-prev {
+			display: none;
+		}
+	}
+	&-scrollbar {
+	}
+	&__cards {
+		transition: all 0.3s ease 0s;
+		display: flex;
+	}
+
+	&__card {
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+		border-radius: 6px;
+		padding: 2rem 1.5rem;
+		background-color: $mainColor;
+		&:not(:last-child) {
+			margin-right: 16px;
+		}
+	}
+
+	&__contnet {
+		flex: 1 1 auto;
+	}
+
+	&__sub-title {
+		text-transform: uppercase;
+		line-height: 1.4em;
+		letter-spacing: em(0.7px, "em", 15px);
+		margin-bottom: 32px;
+	}
+	&__title {
+		font-size: 42px;
+		line-height: 1em;
+		letter-spacing: em(1px, "em", 42px);
+		span {
+			font-weight: 700;
+		}
+	}
+
+	&__author {
+		@extend .testimonial__sub-title;
+		text-transform: none;
+		margin-bottom: 0;
+	}
+}
 
 //* === touch/pc ===
 body._touch {
@@ -414,6 +488,18 @@ body._touch {
 	}
 	.cash__img {
 		width: 784px;
+	}
+	.testimonial_cards {
+		justify-content: space-between;
+	}
+	.testimonial__card {
+		flex: 1;
+		height: 100% !important;
+	}
+}
+@media (max-width: em(1280px)) {
+	.testimonial__title {
+		font-size: 32px;
 	}
 }
 @media (max-width: em(890px)) {
@@ -597,6 +683,10 @@ body._touch {
 			filter: blur(100px);
 			left: -50px;
 		}
+	}
+	.testimonial__slider {
+		max-width: 50vw;
+		overflow: hidden;
 	}
 }
 @media (max-width: em(767px)) {

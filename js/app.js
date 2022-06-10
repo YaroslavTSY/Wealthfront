@@ -1,5 +1,5 @@
 import * as functions from "./modules/functions.js";
-import Swiper from 'swiper';
+import Swiper, { Pagination, Scrollbar } from 'swiper';
 functions.isWebp();
 functions.isMobile;
 
@@ -32,24 +32,28 @@ if (iconMenu) {
 }
 
 //! Swiper Slider
-const cards = new Swiper('.testimonial__slider', {
+new Swiper('.testimonial__slider', {
+	modules: [Pagination, Scrollbar],
 	enabled: true,
 	slidesPerView: 1,
 	spaceBetween: 16,
 	autoHeight: true,
 	pagination: {
-		el: '.testimonial-pagination',
+		enabled: true,
+		el: '.swiper-pagination',
 		type: 'bullets',
 	},
 	scrollbar: {
-		el: '.testimonial-scrollbar',
+		enabled: true,
+		el: '.swiper-scrollbar',
 		draggable: true,
-		dragClass: 'testimonial-scrollbar-drag',
+		dragClass: 'swiper-scrollbar-drag',
+		snapOnRelease: true,
 	},
 	breakpoints: {
 		992: {
-			scrollbar: false,
 			enabled: false,
+			scrollbar: false,
 		}
 	}
-})
+});

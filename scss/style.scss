@@ -403,7 +403,7 @@ p {
 		@include adaptiv-value("height", 563, 300, 1);
 		background: $accentColor;
 		position: relative;
-		margin-bottom: 23%;
+		margin-bottom: 10%;
 	}
 	&__slider {
 		position: absolute;
@@ -411,25 +411,35 @@ p {
 		transform: translate(-50%, 0px);
 		overflow: visible;
 		bottom: -23%;
-		@include adaptiv-value("max-width", 1310, 320, 0);
+		@include adaptiv-value("width", 1310, 320, 0);
 		margin: 0 auto;
 		padding: 0px 15px;
-	}
-	&-pagination {
-	}
-	&-button {
-		&-next {
-			display: none;
+		.swiper-pagination {
+			bottom: 14px;
+			&-bullet {
+				width: 11px;
+				height: 11px;
+				line-height: 11px;
+				font-size: 11px;
+				background-color: $mainColor;
+			}
 		}
-		&-prev {
-			display: none;
+		.swiper-scrollbar {
+			z-index: 1;
+			width: 90%;
+			left: 50%;
+			bottom: 4px;
+			transform: translate(-50%, 0);
+			background: rgba($color: $mainColor, $alpha: 0.4);
+			border-radius: 6px;
+			&-drag {
+				background: rgba($color: $mainColor, $alpha: 0.85);
+				border-radius: 6px;
+			}
 		}
-	}
-	&-scrollbar {
 	}
 	&__cards {
-		transition: all 0.3s ease 0s;
-		display: flex;
+		align-items: center;
 	}
 
 	&__card {
@@ -490,6 +500,8 @@ body._touch {
 		width: 784px;
 	}
 	.testimonial_cards {
+		transition: all 0.3s ease 0s;
+		display: flex;
 		justify-content: space-between;
 	}
 	.testimonial__card {
@@ -687,6 +699,20 @@ body._touch {
 	.testimonial__slider {
 		max-width: 50vw;
 		overflow: hidden;
+	}
+	.testimonial__card {
+		position: relative;
+		padding-bottom: 45px;
+		&::after {
+			content: "";
+			height: 35px;
+			width: 100%;
+			position: absolute;
+			border-radius: 0px 0px 6px 6px;
+			left: 0;
+			bottom: 0;
+			background-color: rgba($color: $lightColor, $alpha: 0.85);
+		}
 	}
 }
 @media (max-width: em(767px)) {

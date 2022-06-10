@@ -398,11 +398,9 @@ p {
 	height: fit-content;
 	&__wrapper {
 		@include adaptiv-value("height", 563, 350, 1);
-		@include adaptiv-value("height", 563, 300, 2);
 		background: $accentColor;
 		position: relative;
 		margin-bottom: 10%;
-		@include adaptiv-value("margin-bottom", 10, 70, 4);
 	}
 	&__slider {
 		position: absolute;
@@ -929,6 +927,9 @@ body._touch {
 		img {
 			object-fit: cover;
 		}
+	}
+	.testimonial__wrapper {
+		@include adaptiv-value("margin-bottom", 0, 150, 1);
 	}
 	.trust__img img {
 		object-fit: none;

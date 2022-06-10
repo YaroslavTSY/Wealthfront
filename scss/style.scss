@@ -63,19 +63,16 @@ a {
 
 //* text
 h2 {
-	@include adaptiv-value("font-size", 56, 46, 0);
+	@include adaptiv-value("font-size", 56, 40, 0);
 }
 h3 {
-	@include adaptiv-value("font-size", 50, 40, 0);
+	@include adaptiv-value("font-size", 50, 34, 0);
 }
 h4 {
-	font-size: 34px;
+	@include adaptiv-value("font-size", 34, 28, 0);
 }
 h5 {
-	font-size: 15px;
-}
-h6 {
-	font-size: 12px;
+	@include adaptiv-value("font-size", 15, 17, 0);
 }
 p {
 	font-size: 16px;
@@ -400,10 +397,12 @@ p {
 	padding: 0 0px 45px 0px;
 	height: fit-content;
 	&__wrapper {
-		@include adaptiv-value("height", 563, 300, 1);
+		@include adaptiv-value("height", 563, 350, 1);
+		@include adaptiv-value("height", 563, 300, 2);
 		background: $accentColor;
 		position: relative;
 		margin-bottom: 10%;
+		@include adaptiv-value("margin-bottom", 10, 70, 4);
 	}
 	&__slider {
 		position: absolute;
@@ -411,6 +410,7 @@ p {
 		transform: translate(-50%, 0px);
 		overflow: visible;
 		bottom: -23%;
+		@include adaptiv-value("bottom", -23, -30, 4);
 		@include adaptiv-value("width", 1310, 320, 0);
 		margin: 0 auto;
 		padding: 0px 15px;
@@ -480,6 +480,92 @@ p {
 	}
 }
 
+//* trust section
+.trust {
+	padding: 0px 0px 45px 0px;
+	&__container {
+		> :not(:last-child) {
+			margin-bottom: 96px;
+		}
+	}
+	&__body {
+		text-align: center;
+		> :not(:last-child) {
+			margin-bottom: 57px;
+		}
+	}
+
+	&__img {
+		img {
+			max-width: 100%;
+		}
+	}
+
+	&__content {
+		> :not(:last-child) {
+			margin-bottom: 48px;
+		}
+	}
+	&__btn {
+		max-width: fit-content;
+		margin: 0 auto;
+	}
+	&__title {
+		margin: 0 auto;
+		max-width: 767px;
+		span {
+			font-weight: 700;
+		}
+	}
+	&__featured {
+	}
+}
+.btn__trust {
+}
+.featured {
+	text-align: center;
+	> :not(:last-child) {
+		margin-bottom: 40px;
+	}
+	&__sub-title {
+		text-transform: uppercase;
+		line-height: 1.18em;
+		letter-spacing: em(1.4px);
+	}
+
+	&__logos {
+		display: inline-flex;
+		align-items: center;
+		flex-wrap: wrap;
+		justify-content: center;
+		> :not(:last-child) {
+			@include adaptiv-value("margin-right", 60, 20, 0);
+		}
+	}
+
+	&__logo {
+		&._icon-wsj {
+			@include adaptiv-value("font-size", 30, 35, 0);
+		}
+
+		&._icon-bloomberg {
+			@include adaptiv-value("font-size", 33, 37, 0);
+		}
+
+		&._icon-times {
+			@include adaptiv-value("font-size", 43, 35, 0);
+		}
+
+		&._icon-reuters {
+			@include adaptiv-value("font-size", 60, 50, 0);
+		}
+
+		&._icon-cnbc {
+			@include adaptiv-value("font-size", 47, 50, 0);
+		}
+	}
+}
+
 //* === touch/pc ===
 body._touch {
 	.btn__more {
@@ -512,6 +598,109 @@ body._touch {
 @media (max-width: em(1280px)) {
 	.testimonial__title {
 		font-size: 32px;
+	}
+}
+@media (max-width: em(991px)) {
+	.header {
+		&__container-xl {
+			gap: 5%;
+		}
+		&__logo {
+			flex: 0 1 auto;
+		}
+	}
+	.info {
+		justify-items: center;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(3, auto);
+		gap: 25px;
+		grid-template-areas:
+			"nerdwallet nerdwallet"
+			"investopedia investopedia"
+			"info__subwrapper info__subwrapper";
+		&__subwrapper {
+			margin-top: 10px;
+			grid-template-columns: repeat(2, auto);
+			grid-template-rows: repeat(2, auto);
+			width: 100%;
+			gap: 25px;
+			grid-template-areas:
+				". ."
+				". .";
+		}
+	}
+	.info-item {
+		text-align: center;
+	}
+	.investing {
+		&__img {
+			&::before {
+				top: 48%;
+				left: 18%;
+			}
+			&::after {
+				top: 72%;
+				left: -18%;
+			}
+		}
+	}
+	.cash {
+		&__img {
+			z-index: 2;
+			justify-content: flex-start;
+			img {
+				width: 95%;
+			}
+			&::before {
+				z-index: -1;
+				left: auto;
+				top: 35%;
+				right: -30%;
+				filter: blur(1px);
+				opacity: 0.75;
+			}
+		}
+		&__content {
+			max-width: 50%;
+			z-index: 3;
+			position: relative;
+		}
+		&__bg {
+			position: absolute;
+			background: rgba(214, 219, 240, 1);
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+			filter: blur(100px);
+			left: -50px;
+		}
+	}
+	.testimonial__slider {
+		@include adaptiv-value("max-width", 800, 320, 1);
+		overflow: hidden;
+	}
+	.testimonial__card {
+		position: relative;
+		padding-bottom: 45px;
+		&::after {
+			content: "";
+			height: 35px;
+			width: 100%;
+			position: absolute;
+			border-radius: 0px 0px 6px 6px;
+			left: 0;
+			bottom: 0;
+			background-color: rgba($color: $lightColor, $alpha: 0.85);
+		}
+	}
+	.featured {
+		&__logos {
+			@include adaptiv-value("row-gap", 20, 35, 0);
+			column-gap: 40px;
+			> :not(:last-child) {
+				margin-right: 0;
+			}
+		}
 	}
 }
 @media (max-width: em(890px)) {
@@ -620,100 +809,6 @@ body._touch {
 		border: 2px solid $lightColor;
 	}
 	//* Burger Menu END --------
-}
-@media (max-width: em(991px)) {
-	.header {
-		&__container-xl {
-			gap: 5%;
-		}
-		&__logo {
-			flex: 0 1 auto;
-		}
-	}
-	.info {
-		justify-items: center;
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(3, auto);
-		gap: 25px;
-		grid-template-areas:
-			"nerdwallet nerdwallet"
-			"investopedia investopedia"
-			"info__subwrapper info__subwrapper";
-		&__subwrapper {
-			margin-top: 10px;
-			grid-template-columns: repeat(2, auto);
-			grid-template-rows: repeat(2, auto);
-			width: 100%;
-			gap: 25px;
-			grid-template-areas:
-				". ."
-				". .";
-		}
-	}
-	.info-item {
-		text-align: center;
-	}
-	.investing {
-		&__img {
-			&::before {
-				top: 48%;
-				left: 18%;
-			}
-			&::after {
-				top: 72%;
-				left: -18%;
-			}
-		}
-	}
-	.cash {
-		&__img {
-			z-index: 2;
-			justify-content: flex-start;
-			img {
-				width: 95%;
-			}
-			&::before {
-				z-index: -1;
-				left: auto;
-				top: 35%;
-				right: -30%;
-				filter: blur(1px);
-				opacity: 0.75;
-			}
-		}
-		&__content {
-			max-width: 50%;
-			z-index: 3;
-			position: relative;
-		}
-		&__bg {
-			position: absolute;
-			background: rgba(214, 219, 240, 1);
-			width: 100%;
-			height: 100%;
-			z-index: -1;
-			filter: blur(100px);
-			left: -50px;
-		}
-	}
-	.testimonial__slider {
-		max-width: 50vw;
-		overflow: hidden;
-	}
-	.testimonial__card {
-		position: relative;
-		padding-bottom: 45px;
-		&::after {
-			content: "";
-			height: 35px;
-			width: 100%;
-			position: absolute;
-			border-radius: 0px 0px 6px 6px;
-			left: 0;
-			bottom: 0;
-			background-color: rgba($color: $lightColor, $alpha: 0.85);
-		}
-	}
 }
 @media (max-width: em(767px)) {
 	//* Hero-section
@@ -834,5 +929,8 @@ body._touch {
 		img {
 			object-fit: cover;
 		}
+	}
+	.trust__img img {
+		object-fit: none;
 	}
 }

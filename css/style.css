@@ -606,9 +606,9 @@ p {
 .cash__img::before {
   content: " ";
   position: absolute;
-  width: calc(177px + 177 * ((100vw - 320px) / 1120));
-  height: calc(235px + 236 * ((100vw - 320px) / 1120));
-  left: 5%;
+  width: 354px;
+  height: 471px;
+  left: 0%;
   top: 27%;
   top: "27%";
   -webkit-transition: all 0.3s ease 0s;
@@ -769,6 +769,7 @@ p {
 
 .testimonial__title {
   font-size: 42px;
+  font-size: calc(32px + 10 * ((100vw - 320px) / 1120));
   line-height: 1em;
   letter-spacing: 0.0238095238em;
 }
@@ -794,8 +795,12 @@ p {
   text-align: center;
 }
 
-.trust__body > :not(:last-child) {
+.trust__body > :not(:last-child):default {
   margin-bottom: 57px;
+}
+
+.trust__img {
+  margin-bottom: 7px;
 }
 
 .trust__img img {
@@ -848,10 +853,11 @@ p {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  row-gap: calc(35px + -15 * ((100vw - 320px) / 1120));
 }
 
 .featured__logos > :not(:last-child) {
-  margin-right: calc(20px + 40 * ((100vw - 320px) / 1120));
+  margin-right: 60px;
 }
 
 .featured__logo._icon-wsj {
@@ -929,6 +935,10 @@ p {
   line-height: 1.8em;
 }
 
+.footer__link:hover {
+  text-decoration: underline;
+}
+
 body._touch .btn__more {
   text-decoration: underline;
 }
@@ -968,7 +978,15 @@ body._touch .btn__more {
 
 @media (max-width: 1280px) {
   .cash__img::before {
-    top: calc(50% + -23 * ((100vw - 320px) / 960));
+    width: calc(177px + 177 * ((100vw - 320px) / 960));
+  }
+
+  .cash__img::before {
+    height: calc(235px + 236 * ((100vw - 320px) / 960));
+  }
+
+  .cash__img::before {
+    top: calc(40% + -13 * ((100vw - 320px) / 960));
   }
 
   .saving__container {
@@ -985,6 +1003,10 @@ body._touch .btn__more {
 
   .testimonial__slider {
     bottom: calc(-30% + 7 * ((100vw - 320px) / 960));
+  }
+
+  .featured__logos > :not(:last-child) {
+    margin-right: calc(20px + 40 * ((100vw - 320px) / 960));
   }
 }
 
@@ -1100,7 +1122,6 @@ body._touch .btn__more {
   }
 
   .featured__logos {
-    row-gap: calc(35px + -15 * ((100vw - 320px) / 1120));
     -webkit-column-gap: 40px;
        -moz-column-gap: 40px;
             column-gap: 40px;
@@ -1364,9 +1385,14 @@ body._touch .btn__more {
   .cash__img img {
     -o-object-position: top right;
        object-position: top right;
+    max-height: 70vh;
   }
 
   .cash__img::before {
+    max-height: 60vh;
+    -webkit-filter: blur(0.1px);
+            filter: blur(0.1px);
+    opacity: 0.95;
     left: 5%;
     top: 15%;
   }

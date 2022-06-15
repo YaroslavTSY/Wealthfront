@@ -481,6 +481,7 @@ p {
 	}
 	&__title {
 		font-size: 42px;
+		@include adaptiv-value("font-size", 42, 22, 0);
 		line-height: 1em;
 		letter-spacing: em(1px, "em", 42px);
 		span {
@@ -556,7 +557,7 @@ p {
 		justify-content: center;
 		@include adaptiv-value("row-gap", 20, 35, 0);
 		> :not(:last-child) {
-			@include adaptiv-value("margin-right", 60, 20, 0);
+			@include adaptiv-value("margin-right", 60, 20, 1);
 		}
 	}
 

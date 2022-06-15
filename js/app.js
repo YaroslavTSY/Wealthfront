@@ -31,29 +31,33 @@ if (iconMenu) {
 	});
 }
 
-//! Swiper Slider
-new Swiper('.testimonial__slider', {
-	modules: [Pagination, Scrollbar],
-	enabled: true,
-	slidesPerView: 1,
-	spaceBetween: 16,
-	autoHeight: true,
-	pagination: {
+
+
+window.onload = function () {
+	//! Swiper Slider
+	const testimonialSlider = new Swiper('.testimonial__slider', {
+		modules: [Pagination, Scrollbar],
 		enabled: true,
-		el: '.swiper-pagination',
-		type: 'bullets',
-	},
-	scrollbar: {
-		enabled: true,
-		el: '.swiper-scrollbar',
-		draggable: true,
-		dragClass: 'swiper-scrollbar-drag',
-		snapOnRelease: true,
-	},
-	breakpoints: {
-		992: {
-			enabled: false,
-			scrollbar: false,
+		slidesPerView: 1,
+		spaceBetween: 16,
+		autoHeight: true,
+		pagination: {
+			enabled: true,
+			el: '.swiper-pagination',
+			type: 'bullets',
+		},
+		scrollbar: {
+			enabled: true,
+			el: '.swiper-scrollbar',
+			draggable: true,
+			dragClass: 'swiper-scrollbar-drag',
+			snapOnRelease: true,
+		},
+		breakpoints: {
+			992: {
+				enabled: false,
+				scrollbar: false,
+			}
 		}
-	}
-});
+	});
+}

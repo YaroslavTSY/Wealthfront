@@ -91,6 +91,8 @@
 			z-index: 3;
 			position: relative;
 		}
+		&__text {
+		}
 		&__bg {
 			position: absolute;
 			background: rgba(214, 219, 240, 1);
@@ -121,7 +123,6 @@
 	}
 	.featured {
 		&__logos {
-			@include adaptiv-value("row-gap", 20, 35, 0);
 			column-gap: 40px;
 			> :not(:last-child) {
 				margin-right: 0;
@@ -305,8 +306,12 @@
 			display: block;
 			img {
 				object-position: top right;
+				max-height: 70vh;
 			}
 			&::before {
+				max-height: 60vh;
+				filter: blur(0.1px);
+				opacity: 0.95;
 				left: 5%;
 				top: 15%;
 			}

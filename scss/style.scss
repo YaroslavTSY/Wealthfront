@@ -356,11 +356,11 @@ p {
 		&::before {
 			content: " ";
 			position: absolute;
-			@include adaptiv-value("width", 354, 177, 0);
-			@include adaptiv-value("height", 471, 235, 0);
-			left: 5%;
+			@include adaptiv-value("width", 354, 177, 1);
+			@include adaptiv-value("height", 471, 235, 1);
+			left: 0%;
 			top: 27%;
-			@include adaptiv-value("top", 27, 50, 4);
+			@include adaptiv-value("top", 27, 40, 4);
 			transition: all 0.3s ease 0s;
 			transform: rotate(-10deg) scale(1);
 			background: url(@img/card.png) 0 0 / contain no-repeat;
@@ -505,12 +505,13 @@ p {
 	}
 	&__body {
 		text-align: center;
-		> :not(:last-child) {
+		> :not(:last-child):default {
 			margin-bottom: 57px;
 		}
 	}
 
 	&__img {
+		margin-bottom: 7px;
 		img {
 			max-width: 100%;
 		}
@@ -553,6 +554,7 @@ p {
 		align-items: center;
 		flex-wrap: wrap;
 		justify-content: center;
+		@include adaptiv-value("row-gap", 20, 35, 0);
 		> :not(:last-child) {
 			@include adaptiv-value("margin-right", 60, 20, 0);
 		}

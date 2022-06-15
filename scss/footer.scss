@@ -40,6 +40,9 @@
 	&__link {
 		font-size: 16px;
 		line-height: 1.8em;
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
 .logo__footer {

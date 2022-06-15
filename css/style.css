@@ -769,7 +769,7 @@ p {
 
 .testimonial__title {
   font-size: 42px;
-  font-size: calc(32px + 10 * ((100vw - 320px) / 1120));
+  font-size: calc(22px + 20 * ((100vw - 320px) / 1120));
   line-height: 1em;
   letter-spacing: 0.0238095238em;
 }
@@ -1394,7 +1394,7 @@ body._touch .btn__more {
             filter: blur(0.1px);
     opacity: 0.95;
     left: 5%;
-    top: 15%;
+    top: 7%;
   }
 
   .cash__content {

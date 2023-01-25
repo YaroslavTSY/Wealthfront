@@ -1,11 +1,11 @@
 import * as functions from "./modules/functions.js";
-import Swiper, { Pagination, Scrollbar } from 'swiper';
+import * as definition from "./modules/definition.js";
 functions.isWebp();
-functions.isMobile;
-
+functions.scrollTop();
+document.addEventListener("click", functions.documentActions);
 
 //! Checking Mobile or PC device
-if (functions.isMobile.any()) {
+if (definition.isMobile.any()) {
 	document.body.classList.add('_touch');
 	//! Opening second menu (add class "_active" while click on point) 
 	let menuArrows = document.querySelectorAll('.menu__open-link')
@@ -31,33 +31,4 @@ if (iconMenu) {
 	});
 }
 
-
-
-window.onload = function () {
-	//! Swiper Slider
-	const testimonialSlider = new Swiper('.testimonial__slider', {
-		modules: [Pagination, Scrollbar],
-		enabled: true,
-		slidesPerView: 1,
-		spaceBetween: 16,
-		autoHeight: true,
-		pagination: {
-			enabled: true,
-			el: '.swiper-pagination',
-			type: 'bullets',
-		},
-		scrollbar: {
-			enabled: true,
-			el: '.swiper-scrollbar',
-			draggable: true,
-			dragClass: 'swiper-scrollbar-drag',
-			snapOnRelease: true,
-		},
-		breakpoints: {
-			992: {
-				enabled: false,
-				scrollbar: false,
-			}
-		}
-	});
-}
+window.onload = functions.sliderTestimonial();

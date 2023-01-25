@@ -4,34 +4,58 @@ $maxWidthContainer: 1280;
 @mixin adaptiv-value($property, $startSize, $minSize, $type) {
 	$addSize: $startSize - $minSize;
 	@if $type == 1 {
+		//* REM
 		//If smaller then Container
-		#{$property}: $startSize + px;
-		@media (max-width: #{$maxWidthContainer + px}) {
-			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+		#{$property}: rem($startSize);
+		@media (max-width: em($maxWidthContainer)) {
+			#{$property}: calc(#{rem($minSize)} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
 		}
 	} @else if $type == 2 {
-		//If bigger then Container
-		#{$property}: $startSize + px;
-		@media (min-width: #{$maxWidthContainer + px}) {
-			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+		//* REM
+		//If bigger then Screen
+		#{$property}: rem($startSize);
+		@media (min-width: em($maxWidth)) {
+			#{$property}: calc(#{rem($minSize)} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
 		}
 	} @else if $type == 3 {
-		//Procent
-		#{$property}: calc(#{$minSize + "%"} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+		//? Percent
+		//If bigger then Container
+		#{$property}: $startSize * 1%;
+		@media (min-width: em($maxWidth)) {
+			#{$property}: calc(#{$minSize * 1%} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+		}
 	} @else if $type == 4 {
-		//If smaller then Container Procent
-		#{$property}: $startSize + "%";
-		@media (max-width: #{$maxWidthContainer + px}) {
-			#{$property}: calc(#{$minSize + "%"} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+		//? Percent
+		//If smaller then Container
+		#{$property}: #{$startSize * 1%};
+		@media (max-width: em($maxWidthContainer)) {
+			#{$property}: calc(#{$minSize * 1%} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
 		}
 	} @else if $type == 5 {
-		//If smaller then Container Procent
-		#{$property}: $startSize;
-		@media (max-width: #{$maxWidthContainer}) {
-			#{$property}: calc(#{$minSize} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}) + "%");
+		//? Percent
+		//Always
+		#{$property}: calc(#{$minSize * 1%} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+	} @else if $type == 6 {
+		//! PX
+		//If smaller then Container
+		#{$property}: #{$startSize + px};
+		@media (max-width: em($maxWidthContainer)) {
+			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
 		}
-	} @else {
+	} @else if $type == 7 {
+		//! PX
+		//If bigger then Screen
+		#{$property}: #{$startSize + px};
+		@media (min-width: em($maxWidth)) {
+			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+		}
+	} @else if $type == 8 {
+		//! PX
 		//Always
 		#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+	} @else {
+		//* REM
+		//Always
+		#{$property}: calc(#{rem($minSize)} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
 	}
 }

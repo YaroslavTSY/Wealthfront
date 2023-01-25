@@ -7,41 +7,41 @@
 	&__container-xl {
 	}
 	&__content {
-		padding: 65px 0px 32px 0px;
+		@include adaptiv-value("padding-top", 65, 48.75, 2);
+		@include adaptiv-value("padding-bottom", 32, 24, 2);
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
 		> :not(:last-child) {
-			margin-right: 20px;
+			margin-right: rem(20px);
 		}
 	}
 	&__logo {
-		font-size: 26px;
+		@include adaptiv-value("font-size", 26, 19.5, 2);
 		color: transparent;
 		background: linear-gradient(180deg, #f7e9e2 -42.34%, #dadef1 100%);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		color: transparent;
-		padding-right: 8px;
+		padding-right: rem(8px);
 	}
 
 	&__menu {
 		display: grid;
-		grid-auto-columns: 1fr;
-		grid-template-columns: repeat(4, 1fr);
-		grid-auto-rows: 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-rows: auto;
-		gap: 32px 56px;
+		gap: rem(32px) rem(56px);
 	}
 
 	&__list {
 	}
 
 	&__link {
-		font-size: 16px;
+		@include adaptiv-value("font-size", 16, 12, 2);
 		line-height: 1.8em;
-		&:hover {
-			text-decoration: underline;
+		@extend %link;
+		&::after {
+			background-color: $mainColor;
 		}
 	}
 }

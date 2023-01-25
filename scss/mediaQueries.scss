@@ -36,23 +36,28 @@
 		}
 	}
 	.info {
-		justify-items: center;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 1fr 1fr;
 		grid-template-rows: repeat(3, auto);
 		gap: 25px;
 		grid-template-areas:
 			"nerdwallet nerdwallet"
 			"investopedia investopedia"
 			"info__subwrapper info__subwrapper";
+		> * {
+			justify-self: center;
+		}
 		&__subwrapper {
-			margin-top: 10px;
-			grid-template-columns: repeat(2, auto);
-			grid-template-rows: repeat(2, auto);
+			--columns: 2;
+			--gap: #{rem(25px)};
+			--gap-columns: calc(var(--columns) - 1);
+			--gap-count: calc(var(--gap) / var(--columns) * var(--gap-columns));
+			flex-wrap: wrap;
+			gap: var(--gap);
+			margin-top: rem(10px);
 			width: 100%;
-			gap: 25px;
-			grid-template-areas:
-				". ."
-				". .";
+			> * {
+				flex: 1 1 calc(calc(100% / var(--columns)) - var(--gap-count));
+			}
 		}
 	}
 	.info-item {
@@ -278,7 +283,7 @@
 			img {
 				margin-left: -2.5%;
 				@include adaptiv-value("width", 100, 105, 4);
-				@include adaptiv-value("height", 370, 400, 0);
+				@include adaptiv-value("height", 570, 400, 6);
 				object-fit: none;
 				object-position: top left;
 				-webkit-mask-image: linear-gradient(0deg, #0000 var(--wf-fade-stop, 60%), #fff var(--wf-fade-start, 75%));
@@ -312,8 +317,8 @@
 				max-height: 60vh;
 				filter: blur(0.1px);
 				opacity: 0.95;
-				left: 5%;
-				top: 7%;
+				left: 5% !important;
+				top: 12% !important;
 			}
 		}
 		&__content {
@@ -330,7 +335,7 @@
 			align-items: stretch;
 		}
 		&__menu {
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: 1fr 1fr 1fr;
 		}
 	}
 }
@@ -371,17 +376,20 @@
 	}
 	.cash__img {
 		@include adaptiv-value("width", 100, 100, 4);
-		img {
-			object-fit: cover;
-		}
 	}
 	.testimonial__wrapper {
-		@include adaptiv-value("margin-bottom", 0, 150, 1);
+		@include adaptiv-value("margin-bottom", 0, 200, 1);
 	}
 	.trust__img img {
 		object-fit: none;
 	}
 	.footer__menu {
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: em(420px)) {
+	.cash__img img {
+		object-fit: cover;
 	}
 }

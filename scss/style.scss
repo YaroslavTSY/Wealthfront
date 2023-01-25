@@ -10,7 +10,6 @@ $mainColor: #ffffff;
 $lightColor: #4840bb;
 $accentColor: #230b59;
 //*
-
 body {
 	font-family: "Roboto", sans-serif;
 }
@@ -39,7 +38,7 @@ body {
 section {
 	z-index: 0;
 	position: relative;
-	padding: 45px 0;
+	padding: rem(67.5px) 0;
 }
 main {
 	flex: 1 1 auto;
@@ -49,47 +48,121 @@ a {
 	color: $accentColor;
 }
 
+%link {
+	position: relative;
+	&::after {
+		content: " ";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: rem(1.5px);
+		background-color: $lightColor;
+		transform-origin: left;
+		transform: scaleX(0);
+		transition: all 0.3s ease 0s;
+	}
+	&:hover {
+		&::after {
+			transform: scaleX(1);
+		}
+	}
+}
+
+#scroll-btn {
+	opacity: 0;
+	pointer-events: none;
+	@include adaptiv-value("width", 50, 10, 2);
+	@include adaptiv-value("height", 50, 10, 2);
+	background-color: $mainColor;
+	position: fixed;
+	bottom: 7.5%;
+	right: 7.5%;
+	border: 0.125rem solid $lightColor;
+	border-radius: 50%;
+	transition: all 0.5s, border 0.3s, color 0.3s;
+	span {
+		@include adaptiv-value("margin-top", 12, 6, 2);
+		display: inline-block;
+		@include adaptiv-value("width", 20, 5, 2);
+		@include adaptiv-value("height", 20, 5, 2);
+		border: solid $accentColor;
+		border-left-width: 0;
+		border-top-width: 0;
+		@include adaptiv-value("border-right-width", 3, 1, 2);
+		@include adaptiv-value("border-bottom-width", 3, 1, 2);
+		padding: 0.1875rem;
+		transform: rotate(-135deg);
+	}
+	&.show {
+		opacity: 0.8;
+		pointer-events: all;
+		transition: all 1s, border 0.3s, color 0.3s;
+		&:hover {
+			border-color: $mainColor;
+			span {
+				border-color: $lightColor;
+			}
+		}
+	}
+}
+
 [class*="__container"] {
-	max-width: ($maxWidthContainer + px); // Enter the value
+	max-width: calc(rem($maxWidthContainer) + rem(130)); // Enter the value
 	margin: 0 auto;
 	@include adaptiv-value("padding-left", 65, 30, 0);
 	@include adaptiv-value("padding-right", 65, 30, 0);
+	@media (min-width: em(1600px)) {
+		max-width: 80%;
+	}
 }
 [class*="__container-xl"] {
-	max-width: 1344px; // Enter the value
+	max-width: em(1344px); // Enter the value
 	margin: 0 auto;
-	padding: 0px 15px;
+	padding: 0px (15px);
+	@media (min-width: em(1600px)) {
+		max-width: 90%;
+	}
 }
 
 //* text
 h2 {
+	// @include adaptiv-value("font-size", 56, 42, 2);
 	@include adaptiv-value("font-size", 56, 40, 0);
 }
 h3 {
+	// @include adaptiv-value("font-size", 50, 37.5, 2);
 	@include adaptiv-value("font-size", 50, 34, 0);
 }
 h4 {
+	// @include adaptiv-value("font-size", 34, 25.5, 2);
 	@include adaptiv-value("font-size", 34, 28, 0);
 }
 h5 {
+	// @include adaptiv-value("font-size", 15, 11.25, 2);
 	@include adaptiv-value("font-size", 15, 17, 0);
 }
 p {
-	font-size: 16px;
+	@include adaptiv-value("font-size", $rootfz, 12, 2);
 	line-height: 1.5em;
 }
 //*
 
 .page {
-	margin-top: 98px;
+	> section:nth-child(1) {
+		@include adaptiv-value("padding-top", 96, 70, 2);
+	}
 }
 
 .btn {
 	min-width: max-content;
 	font-weight: 700;
-	font-size: 16px;
-	padding: 11.5px 18px;
-	border-radius: 6px;
+	@include adaptiv-value("font-size", 16, 12, 2);
+	@include adaptiv-value("padding-top", 11.5, 8.625, 2);
+	@include adaptiv-value("padding-bottom", 11.5, 8.625, 2);
+	@include adaptiv-value("padding-right", 18, 13.5, 2);
+	@include adaptiv-value("padding-left", 18, 13.5, 2);
+	border-radius: rem(6px);
 	line-height: 1.35em;
 	text-align: center;
 	display: flex;
@@ -139,16 +212,16 @@ p {
 		@include adaptiv-value("min-height", 96, 70, 0);
 		display: flex;
 		align-items: center;
-		padding-top: 5px;
-		padding-bottom: 5px;
+		padding-top: rem(5px);
+		padding-bottom: rem(5px);
 		justify-content: space-between;
-		gap: 20px;
+		gap: rem(20px);
 	}
 
 	&__logo {
 		flex: 1 1 33.333%;
 		color: $accentColor;
-		font-size: 25px;
+		@include adaptiv-value("font-size", 25, 18.75, 2);
 		z-index: 5;
 	}
 
@@ -163,27 +236,21 @@ p {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		gap: 20px;
+		gap: rem(20px);
 	}
 	&__btns {
 		display: flex;
-		gap: 12px;
+		gap: rem(12px);
 	}
 	&__list {
 		display: flex;
 		@include adaptiv-value("gap", 48, 25, 0);
+		@include adaptiv-value("font-size", 16, 12, 2);
+		text-transform: capitalize;
+		line-height: 1.8em;
 		li {
-			text-transform: capitalize;
-			font-size: 18px;
-			line-height: 1.8em;
-			&:hover {
-				text-decoration: underline;
-			}
+			@extend %link;
 		}
-	}
-	&__btns {
-		display: flex;
-		gap: 12px;
 	}
 }
 .menu-btn {
@@ -205,7 +272,7 @@ p {
 
 //* first-screen---
 .hero {
-	padding-bottom: 67.5px;
+	padding-bottom: rem(67.5px);
 	&__container-xl {
 	}
 
@@ -218,31 +285,37 @@ p {
 .preview {
 	display: flex;
 	align-items: center;
-	gap: 48px;
-	margin-bottom: 50px;
+	gap: rem(48px);
+	margin-bottom: rem(50px);
 	&__img {
 		flex: 1 1 59%;
+		display: inline-flex;
+		justify-content: center;
+		max-height: calc(100vh - rem(235px));
+		overflow: hidden;
 		img {
 			width: 100%;
 			height: 100%;
+			object-fit: cover;
+			object-position: top;
 		}
 	}
 
 	&__offer {
 		flex: 1 1 41%;
-		padding: 0px 15px;
+		padding: 0px rem(15px);
 	}
 }
 .offer {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 30px;
+	gap: rem(30px);
 	&__title {
 		line-height: 1.1em;
 		letter-spacing: em(1.899px, "em", 50px);
 		span {
-			font-size: 47px;
+			@include adaptiv-value("font-size", 47, 35.25, 2);
 			letter-spacing: em(1.1px);
 		}
 	}
@@ -258,27 +331,29 @@ p {
 }
 .info {
 	display: grid;
-	gap: 20px;
-	grid-template-areas: "nerdwallet investopedia info__subwrapper info__subwrapper info__subwrapper info__subwrapper";
+	gap: rem(20px);
+	grid-template-areas: "nerdwallet investopedia info__subwrapper";
+	grid-template-columns: 1.25fr 1.25fr 3.5fr;
 	&__subwrapper {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 0px 20px;
-		grid-template-areas: ". . . .";
 		grid-area: info__subwrapper;
+		display: flex;
+		justify-content: space-between;
+		gap: 0px 1.25rem;
 	}
 }
 .info-item {
 	&__title {
 		letter-spacing: em(0.55px);
-		margin-bottom: 10px;
-		font-size: 26px;
-		&::after {
-			margin-left: 8.5px;
+		margin-bottom: rem(10px);
+		@include adaptiv-value("font-size", 26, 19.5, 2);
+		&._icon-star {
+			&::after {
+				margin-left: rem(8.5px);
+			}
 		}
 	}
 	&__text {
-		font-size: 14px;
+		@include adaptiv-value("font-size", 12, 9, 2);
 	}
 	&.nerdwallet {
 		grid-area: nerdwallet;
@@ -291,7 +366,6 @@ p {
 
 //* investing section ===
 .investing {
-	padding: 67.5px 0px 45px 0px;
 	&__container {
 		display: flex;
 		justify-content: center;
@@ -356,17 +430,15 @@ p {
 		&::before {
 			content: " ";
 			position: absolute;
-			@include adaptiv-value("width", 354, 177, 1);
-			@include adaptiv-value("height", 471, 235, 1);
-			left: 0%;
-			top: 27%;
-			@include adaptiv-value("top", 27, 40, 4);
+			@include adaptiv-value("width", 354, 177, 6);
+			@include adaptiv-value("height", 471, 235, 6);
+			left: auto;
+			@include adaptiv-value("right", 47, 42, 5);
+			@include adaptiv-value("top", 70, 24, 4);
+			top: 24%;
 			transition: all 0.3s ease 0s;
 			transform: rotate(-10deg) scale(1);
 			background: url(@img/card.png) 0 0 / contain no-repeat;
-		}
-		&::after {
-			display: none;
 		}
 		&::after {
 			display: none;
@@ -376,6 +448,7 @@ p {
 //* Saving section
 .saving {
 	background-color: $lightColor;
+	padding-bottom: 0;
 	&__container {
 		display: flex;
 		align-items: center;
@@ -391,6 +464,7 @@ p {
 		display: flex;
 		flex-direction: column;
 		gap: 2.5em;
+		padding-bottom: 1rem;
 	}
 
 	&__title {
@@ -411,10 +485,10 @@ p {
 }
 //* testimonail section
 .testimonial {
-	padding: 0 0px 45px 0px;
+	padding: 0;
 	height: fit-content;
 	&__wrapper {
-		@include adaptiv-value("height", 563, 350, 1);
+		@include adaptiv-value("height", 563, 380, 1);
 		background: $accentColor;
 		position: relative;
 		margin-bottom: 10%;
@@ -428,14 +502,14 @@ p {
 		@include adaptiv-value("bottom", -23, -30, 4);
 		@include adaptiv-value("width", 1310, 320, 0);
 		margin: 0 auto;
-		padding: 0px 15px;
+		padding: 0px rem(15px);
 		.swiper-pagination {
-			bottom: 14px;
+			bottom: rem(14px);
 			&-bullet {
-				width: 11px;
-				height: 11px;
-				line-height: 11px;
-				font-size: 11px;
+				width: rem(11px);
+				height: rem(11px);
+				line-height: em(11px, "em", 11px);
+				font-size: rem(11px);
 				background-color: $mainColor;
 			}
 		}
@@ -443,13 +517,13 @@ p {
 			z-index: 1;
 			width: 90%;
 			left: 50%;
-			bottom: 4px;
+			bottom: rem(4px);
 			transform: translate(-50%, 0);
 			background: rgba($color: $mainColor, $alpha: 0.4);
-			border-radius: 6px;
+			border-radius: rem(6px);
 			&-drag {
 				background: rgba($color: $mainColor, $alpha: 0.85);
-				border-radius: 6px;
+				border-radius: rem(6px);
 			}
 		}
 	}
@@ -460,12 +534,12 @@ p {
 	&__card {
 		display: flex;
 		flex-direction: column;
-		gap: 32px;
-		border-radius: 6px;
+		gap: rem(32px);
+		border-radius: rem(6px);
 		padding: 2rem 1.5rem;
 		background-color: $mainColor;
 		&:not(:last-child) {
-			margin-right: 16px;
+			margin-right: rem(16px);
 		}
 	}
 
@@ -477,10 +551,9 @@ p {
 		text-transform: uppercase;
 		line-height: 1.4em;
 		letter-spacing: em(0.7px, "em", 15px);
-		margin-bottom: 32px;
+		margin-bottom: rem(32px);
 	}
 	&__title {
-		font-size: 42px;
 		@include adaptiv-value("font-size", 42, 22, 0);
 		line-height: 1em;
 		letter-spacing: em(1px, "em", 42px);
@@ -498,21 +571,20 @@ p {
 
 //* trust section
 .trust {
-	padding: 0px 0px 45px 0px;
+	padding: 0 0 rem(150px) 0;
 	&__container {
 		> :not(:last-child) {
-			margin-bottom: 96px;
+			margin-bottom: rem(96px);
 		}
 	}
 	&__body {
 		text-align: center;
-		> :not(:last-child):default {
-			margin-bottom: 57px;
+		> :not(:last-child) {
+			margin-bottom: rem(57px);
 		}
 	}
 
 	&__img {
-		margin-bottom: 7px;
 		img {
 			max-width: 100%;
 		}
@@ -520,7 +592,7 @@ p {
 
 	&__content {
 		> :not(:last-child) {
-			margin-bottom: 48px;
+			margin-bottom: rem(48px);
 		}
 	}
 	&__btn {
@@ -529,7 +601,7 @@ p {
 	}
 	&__title {
 		margin: 0 auto;
-		max-width: 767px;
+		max-width: rem(767px);
 		span {
 			font-weight: 700;
 		}
@@ -542,7 +614,7 @@ p {
 .featured {
 	text-align: center;
 	> :not(:last-child) {
-		margin-bottom: 40px;
+		margin-bottom: rem(40px);
 	}
 	&__sub-title {
 		text-transform: uppercase;
@@ -562,6 +634,7 @@ p {
 	}
 
 	&__logo {
+		transition: all 0.3s ease 0s;
 		&._icon-wsj {
 			@include adaptiv-value("font-size", 30, 35, 0);
 		}
@@ -587,8 +660,5 @@ p {
 
 //* === touch/pc ===
 body._touch {
-	.btn__more {
-		text-decoration: underline;
-	}
 }
 @import "mediaQueries";
